@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wilson's Bank Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <h1 id="title-heading">Welcome to Wilson's School</h1>
+    </header>
+
+    <main class="main-container">
+        <!-- Auth Card Container -->
+        <div class="glass-card" id="auth-card">
+            <div class="tabs-header">
+                <button class="tab-btn active" id="tab-employee">Employee Login</button>
+                <button class="tab-btn" id="tab-employer">Employer Login</button>
+            </div>
+
+            <form id="login-form">
+                <h2 class="form-title" id="form-title">Employee Access</h2>
+                
+                <div class="input-group">
+                    <label for="login-id">Access ID</label>
+                    <input type="text" id="login-id" placeholder="e.g. EMP101" required autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter password" required autocomplete="off">
+                </div>
+
+                <button type="submit" class="submit-btn">Sign In</button>
+            </form>
+
+            <div id="auth-message" class="message-container"></div>
+        </div>
+
+        <!-- Dashboard View (Hidden by Default) -->
+        <div class="dashboard-container" id="dashboard-view" style="display: none;">
+            <div class="dashboard-header">
+                <h2 class="welcome-title">Welcome back, <span id="user-display-name">User</span>!</h2>
+                <span class="user-role-badge" id="user-display-role">ROLE</span>
+                <button class="signout-btn" id="btn-signout">Sign Out</button>
+            </div>
+
+            <!-- Employee Content Dashboard -->
+            <div class="dashboard-section" id="employee-panel" style="display: none;">
+                <div class="profile-card">
+                    <h3>My Employee Profile</h3>
+                    <div class="profile-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Name:</span>
+                            <span class="detail-value" id="emp-profile-name">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Employee ID:</span>
+                            <span class="detail-value" id="emp-profile-id">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Current Payroll:</span>
+                            <span class="detail-value payroll-value" id="emp-profile-payroll">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Employer Content Dashboard -->
+            <div class="dashboard-section" id="employer-panel" style="display: none;">
+                <div class="employer-grid">
+                    <!-- Register Roster Form -->
+                    <div class="glass-card inner-card">
+                        <h3>Register User (Employee/Employer)</h3>
+                        <form id="register-form">
+                            <div class="input-group">
+                                <label for="reg-name">Full Name</label>
+                                <input type="text" id="reg-name" placeholder="John Doe" required autocomplete="off">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="reg-id">User ID</label>
+                                <input type="text" id="reg-id" placeholder="e.g. EMP101 or MGR101" required autocomplete="off">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="reg-role">Role</label>
+                                <select id="reg-role" class="select-input">
+                                    <option value="EMPLOYEE">Employee</option>
+                                    <option value="EMPLOYER">Employer</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="reg-dob-payroll">Initial Payroll ($)</label>
+                                <input type="number" id="reg-dob-payroll" placeholder="50000" step="0.01" min="0">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="reg-password">Password</label>
+                                <input type="password" id="reg-password" placeholder="Enter password" required autocomplete="off">
+                            </div>
+
+                            <button type="submit" class="submit-btn">Onboard User</button>
+                        </form>
+                        <div id="register-message" class="message-container"></div>
+                    </div>
+
+                    <!-- Manage Payrolls Form -->
+                    <div class="glass-card inner-card">
+                        <h3>Modify Employee Payroll</h3>
+                        <form id="payroll-form">
+                            <div class="input-group">
+                                <label for="payroll-target-id">Select Employee ID</label>
+                                <select id="payroll-target-id" class="select-input" required>
+                                    <option value="">-- Choose Employee --</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="payroll-new-amount">New Payroll Amount ($)</label>
+                                <input type="number" id="payroll-new-amount" placeholder="60000" step="0.01" min="0" required>
+                            </div>
+
+                            <button type="submit" class="submit-btn" style="background-color: #ffffff; color: #000000;">Update Payroll</button>
+                        </form>
+                        <div id="payroll-message" class="message-container"></div>
+                    </div>
+                </div>
+
+                <!-- Comprehensive Directory Table -->
+                <div class="directory-container">
+                    <h3 class="directory-title">Comprehensive Roster & Payroll Directory</h3>
+                    <div class="table-wrapper">
+                        <table class="roster-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>User ID</th>
+                                    <th>Role</th>
+                                    <th>Payroll</th>
+                                </tr>
+                            </thead>
+                            <tbody id="roster-tbody">
+                                <tr>
+                                    <td colspan="4" class="empty-state">No users onboarded yet.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Right Roster Counter -->
+    <footer class="roster-badge" id="roster-badge-container">
+        <span class="badge-label">TOTAL ROSTER</span>
+        <span class="badge-count" id="roster-count">0</span>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

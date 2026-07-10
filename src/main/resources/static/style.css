@@ -1,0 +1,440 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    position: relative;
+    padding-bottom: 6rem;
+}
+
+/* Header Styling */
+.main-header {
+    width: 100%;
+    text-align: center;
+    padding-top: 5vh;
+    padding-bottom: 2vh;
+}
+
+.main-header h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+}
+
+/* Main Container Layout */
+.main-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem 2rem 4rem 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Glass Card Auth Box */
+.glass-card {
+    background: rgba(15, 15, 15, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 2.5rem 3rem;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Tabs Header */
+.tabs-header {
+    display: flex;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 2rem;
+}
+
+.tab-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    color: #a3a3a3;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+}
+
+.tab-btn:hover {
+    color: #ffffff;
+}
+
+.tab-btn.active {
+    color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+
+.form-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-align: center;
+    letter-spacing: -0.02em;
+}
+
+/* Form inputs */
+.input-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #a3a3a3;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.input-group input, .select-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.85rem 1.1rem;
+    font-size: 1.15rem;
+    color: #ffffff;
+    outline: none;
+    transition: all 0.25s ease;
+    width: 100%;
+}
+
+.select-input option {
+    background-color: #0d0d0d;
+    color: #ffffff;
+}
+
+.input-group input:focus, .select-input:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #ffffff;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+}
+
+.input-group input::placeholder {
+    color: #4a4a4a;
+}
+
+/* Submit button */
+.submit-btn {
+    width: 100%;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 8px;
+    padding: 1.1rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 0.8rem;
+}
+
+.submit-btn:hover {
+    background-color: #e5e5e5;
+    transform: scale(1.01);
+}
+
+/* Notification Messages */
+.message-container {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    text-align: center;
+    display: none;
+    line-height: 1.4;
+}
+
+.message-container.success {
+    background-color: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgb(34, 197, 94);
+    color: #4ade80;
+    display: block;
+}
+
+.message-container.error {
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgb(239, 68, 68);
+    color: #f87171;
+    display: block;
+}
+
+/* Dashboard Styles */
+.dashboard-container {
+    width: 100%;
+    animation: fadeIn 0.4s ease;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.welcome-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+}
+
+.user-role-badge {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.signout-btn {
+    background: none;
+    border: 2px solid #ef4444;
+    color: #ef4444;
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.signout-btn:hover {
+    background-color: #ef4444;
+    color: #ffffff;
+}
+
+/* Profile Card (Employee Dashboard) */
+.profile-card {
+    background: rgba(15, 15, 15, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+}
+
+.profile-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.75rem;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    padding-bottom: 0.75rem;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-size: 1.15rem;
+    color: #a3a3a3;
+    font-weight: 500;
+}
+
+.detail-value {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.payroll-value {
+    font-size: 2rem;
+    color: #4ade80;
+    text-shadow: 0 0 10px rgba(74, 222, 128, 0.2);
+}
+
+/* Employer Grid */
+.employer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin-bottom: 3.5rem;
+    width: 100%;
+}
+
+.inner-card {
+    max-width: 100% !important;
+}
+
+.inner-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 0.5rem;
+}
+
+/* Logins Directory Table */
+.directory-container {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.directory-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.01em;
+    color: #e5e5e5;
+}
+
+.table-wrapper {
+    background: rgba(10, 10, 10, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.roster-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 1.1rem;
+}
+
+.roster-table th {
+    background-color: rgba(255, 255, 255, 0.04);
+    color: #a3a3a3;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    padding: 1.1rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.roster-table td {
+    padding: 1.1rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}
+
+.roster-table tr:hover td {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.roster-table tr:last-child td {
+    border-bottom: none;
+}
+
+.empty-state {
+    text-align: center;
+    color: #525252;
+    padding: 3rem !important;
+    font-style: italic;
+}
+
+/* Roster Counter Badge in Bottom Right */
+.roster-badge {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: rgba(20, 20, 20, 0.9);
+    border: 2px solid #ffffff;
+    border-radius: 12px;
+    padding: 0.8rem 1.3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 255, 255, 0.1);
+    z-index: 100;
+    min-width: 130px;
+}
+
+.badge-label {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: #a3a3a3;
+    margin-bottom: 0.2rem;
+}
+
+.badge-count {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .employer-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-header h1 {
+        font-size: 2.2rem;
+    }
+    .glass-card {
+        padding: 2rem;
+    }
+    .roster-badge {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        margin: 2rem auto 0 auto;
+    }
+}
