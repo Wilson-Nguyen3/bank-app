@@ -6,7 +6,7 @@ services:
     image: 172.25.65.138:5000/bank-management:latest
     container_name: bank-management-app
     ports:
-      - "8080:8080"
+      - "8081:8081"
     environment:
       - JAVA_OPTS=-Xmx512m -Xms256m
       - DB_HOST=${DB_HOST:-172.25.64.1}
@@ -16,7 +16,7 @@ services:
       - DB_PASSWORD=1234
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      test: ["CMD", "curl", "-f", "http://localhost:8081/"]
       interval: 30s
       timeout: 10s
       retries: 3
