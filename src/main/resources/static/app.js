@@ -13,6 +13,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginPasswordInput = document.getElementById('login-password');
     const authMessage = document.getElementById('auth-message');
     const formTitle = document.getElementById('form-title');
+    const tabsHeader = document.querySelector('.tabs-header');
+
+    // Public Registration Selectors
+    const publicRegisterForm = document.getElementById('public-register-form');
+    const linkToRegister = document.getElementById('link-to-register');
+    const linkToLogin = document.getElementById('link-to-login');
+    const pubRegNameInput = document.getElementById('pub-reg-name');
+    const pubRegIdInput = document.getElementById('pub-reg-id');
+    const pubRegRoleSelect = document.getElementById('pub-reg-role');
+    const pubRegPayrollInput = document.getElementById('pub-reg-payroll');
+    const pubRegPasswordInput = document.getElementById('pub-reg-password');
 
     // Dashboard Selectors
     const userDisplayName = document.getElementById('user-display-name');
@@ -59,6 +70,24 @@ document.addEventListener('DOMContentLoaded', () => {
         tabEmployee.classList.remove('active');
         formTitle.textContent = 'Employer Access';
         loginIdInput.placeholder = 'e.g. MGR101';
+        clearMessage(authMessage);
+    });
+
+    // Toggle to Register Form
+    linkToRegister.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginForm.style.display = 'none';
+        publicRegisterForm.style.display = 'block';
+        tabsHeader.style.display = 'none';
+        clearMessage(authMessage);
+    });
+
+    // Toggle to Login Form
+    linkToLogin.addEventListener('click', (e) => {
+        e.preventDefault();
+        publicRegisterForm.style.display = 'none';
+        loginForm.style.display = 'block';
+        tabsHeader.style.display = 'flex';
         clearMessage(authMessage);
     });
 
@@ -113,6 +142,54 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             showMessage(authMessage, 'Error: Failed to connect to authentication server.', 'error');
             console.error('Login error:', error);
+        }
+    });
+
+    // Handle Public Registration Submit
+    publicRegisterForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        clearMessage(authMessage);
+
+        const name = pubRegNameInput.value.trim();
+        const id = pubRegIdInput.value.trim();
+        const role = pubRegRoleSelect.value;
+        const payroll = pubRegPayrollInput.value ? parseFloat(pubRegPayrollInput.value) : 0.0;
+        const password = pubRegPasswordInput.value;
+
+        try {
+            const params = new URLSearchParams();
+            params.append('name', name);
+            params.append('id', id);
+            params.append('role', role);
+            params.append('password', password);
+            params.append('payroll', payroll);
+
+            const response = await fetch('/api/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: params
+            });
+
+            const resultText = await response.text();
+
+            if (response.ok && !resultText.startsWith('Error:')) {
+                showMessage(authMessage, 'Account registered successfully! Redirecting to sign in...', 'success');
+                publicRegisterForm.reset();
+                updatePublicRosterCount();
+                
+                // Automatically switch back to login screen after 2.5 seconds
+                setTimeout(() => {
+                    publicRegisterForm.style.display = 'none';
+                    loginForm.style.display = 'block';
+                    tabsHeader.style.display = 'flex';
+                    clearMessage(authMessage);
+                }, 2500);
+            } else {
+                showMessage(authMessage, resultText, 'error');
+            }
+        } catch (error) {
+            showMessage(authMessage, 'Error: Failed to register account.', 'error');
+            console.error('Public registration error:', error);
         }
     });
 

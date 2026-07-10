@@ -438,3 +438,12 @@ body {
         margin: 2rem auto 0 auto;
     }
 }
+
+.toggle-link-container {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.toggle-link-container a:hover {
+    text-decoration: underline !important;
+}

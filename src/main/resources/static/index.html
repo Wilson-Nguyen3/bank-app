@@ -36,6 +36,50 @@
                 </div>
 
                 <button type="submit" class="submit-btn">Sign In</button>
+
+                <div class="toggle-link-container">
+                    <span style="color:#a3a3a3; font-size:0.95rem;">New user? </span>
+                    <a href="#" id="link-to-register" style="color:#ffffff; font-weight:600; font-size:0.95rem; text-decoration:none;">Create an Account</a>
+                </div>
+            </form>
+
+            <form id="public-register-form" style="display: none;">
+                <h2 class="form-title">Register New Account</h2>
+                
+                <div class="input-group">
+                    <label for="pub-reg-name">Full Name</label>
+                    <input type="text" id="pub-reg-name" placeholder="John Doe" required autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <label for="pub-reg-id">User ID (Access ID)</label>
+                    <input type="text" id="pub-reg-id" placeholder="e.g. EMP102 or MGR102" required autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <label for="pub-reg-role">Role</label>
+                    <select id="pub-reg-role" class="select-input">
+                        <option value="EMPLOYEE">Employee</option>
+                        <option value="EMPLOYER">Employer</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="pub-reg-payroll">Initial Payroll ($)</label>
+                    <input type="number" id="pub-reg-payroll" placeholder="e.g. 50000" step="0.01" min="0">
+                </div>
+
+                <div class="input-group">
+                    <label for="pub-reg-password">Password</label>
+                    <input type="password" id="pub-reg-password" placeholder="Enter password" required autocomplete="off">
+                </div>
+
+                <button type="submit" class="submit-btn">Sign Up & Register</button>
+                
+                <div class="toggle-link-container">
+                    <span style="color:#a3a3a3; font-size:0.95rem;">Already have an account? </span>
+                    <a href="#" id="link-to-login" style="color:#ffffff; font-weight:600; font-size:0.95rem; text-decoration:none;">Sign In</a>
+                </div>
             </form>
 
             <div id="auth-message" class="message-container"></div>
